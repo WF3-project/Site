@@ -1,6 +1,7 @@
 # Site
 
 Pour travailler sur le projet
+
 On récupére le projet :
 
 cd C:\xampp\htdocs
