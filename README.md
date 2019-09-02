@@ -27,3 +27,8 @@ php bin/console doctrine:migrations:migrate
 On importe les fixtures de la BDD :
 
 php bin/console doctrine:fixtures:load
+
+
+Pour bosser sur la BDD : 
+
+Creer la database : project_wf3
