@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 02 sep. 2019 à 11:22
+-- Généré le :  lun. 02 sep. 2019 à 12:29
 -- Version du serveur :  10.3.16-MariaDB
 -- Version de PHP :  7.3.7
 
@@ -66,12 +66,23 @@ CREATE TABLE `courses` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
-  `level` enum('debutant','intermédiaire','confirmé') DEFAULT NULL,
+  `id_level` int(11) NOT NULL,
   `date_create` date DEFAULT NULL,
   `description` mediumtext DEFAULT NULL,
   `category_id` int(10) UNSIGNED NOT NULL,
-  `chapter` int(11) UNSIGNED NOT NULL
+  `chapter` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `level`
+--
+
+CREATE TABLE `level` (
+  `int` int(11) NOT NULL,
+  `level` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -131,7 +142,14 @@ ALTER TABLE `courses`
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD UNIQUE KEY `chapter_UNIQUE` (`chapter`),
   ADD UNIQUE KEY `category_id_UNIQUE` (`category_id`),
-  ADD KEY `fk_courses_category1_idx` (`category_id`);
+  ADD KEY `fk_courses_category1_idx` (`category_id`),
+  ADD KEY `level_courses_level_idx` (`id_level`);
+
+--
+-- Index pour la table `level`
+--
+ALTER TABLE `level`
+  ADD PRIMARY KEY (`int`);
 
 --
 -- Index pour la table `user`
@@ -164,6 +182,12 @@ ALTER TABLE `courses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `level`
+--
+ALTER TABLE `level`
+  MODIFY `int` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
@@ -184,7 +208,9 @@ ALTER TABLE `contributor`
 -- Contraintes pour la table `courses`
 --
 ALTER TABLE `courses`
-  ADD CONSTRAINT `fk_courses_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `courses_chapter_chapter` FOREIGN KEY (`chapter`) REFERENCES `chapter` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_courses_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `level_courses_level` FOREIGN KEY (`id_level`) REFERENCES `level` (`int`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `user_has_courses`
