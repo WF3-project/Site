@@ -5,7 +5,9 @@ Pour travailler sur le projet
 On récupére le projet :
 
 cd C:\xampp\htdocs
+
 git clone PROJET
+
 cd PROJET
 
 On installe les dépendances :
