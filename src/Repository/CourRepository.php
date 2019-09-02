@@ -19,6 +19,14 @@ class CourRepository extends ServiceEntityRepository
         parent::__construct($registry, Cour::class);
     }
 
+    // public function findAll()
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->orderBy('p.findAll', 'DESC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
     // /**
     //  * @return Cour[] Returns an array of Cour objects
     //  */

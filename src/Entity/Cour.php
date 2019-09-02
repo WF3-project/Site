@@ -27,7 +27,7 @@ class Cour
     private $illustration_cour;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",)
      */
     private $creeation_date;
 
